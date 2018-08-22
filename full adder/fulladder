@@ -1,0 +1,107 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_008A2E40 .scope module, "full_adder_behav_test" "full_adder_behav_test" 2 1;
+ .timescale 0 0;
+v00970560_0 .var "a", 0 0;
+v00970668_0 .var "b", 0 0;
+v009702F8_0 .net "c", 0 0, L_008ABB08;  1 drivers
+v00970140_0 .var "cin", 0 0;
+v00970248_0 .net "s", 0 0, L_008ABDD8;  1 drivers
+S_008A2F10 .scope module, "ha1" "full_adder" 2 5, 3 19 0, S_008A2E40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a"
+    .port_info 1 /INPUT 1 "b"
+    .port_info 2 /INPUT 1 "cin"
+    .port_info 3 /OUTPUT 1 "soma"
+    .port_info 4 /OUTPUT 1 "cout"
+L_008ABDD8 .functor BUFZ 1, L_008ABAC0, C4<0>, C4<0>, C4<0>;
+L_008ABB08 .functor OR 1, L_008AB9E8, L_008AB958, C4<0>, C4<0>;
+v00970770_0 .net "a", 0 0, v00970560_0;  1 drivers
+v00970350_0 .net "b", 0 0, v00970668_0;  1 drivers
+v00970458_0 .net "carry1", 0 0, L_008AB9E8;  1 drivers
+v009705B8_0 .net "carry2", 0 0, L_008AB958;  1 drivers
+v00970610_0 .net "cin", 0 0, v00970140_0;  1 drivers
+v009707C8_0 .net "cout", 0 0, L_008ABB08;  alias, 1 drivers
+v009702A0_0 .net "soma", 0 0, L_008ABDD8;  alias, 1 drivers
+v00970400_0 .net "soma1", 0 0, L_008AB6D0;  1 drivers
+v009700E8_0 .net "soma2", 0 0, L_008ABAC0;  1 drivers
+S_008A4640 .scope module, "u1" "half_adder" 3 26, 3 3 0, S_008A2F10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a"
+    .port_info 1 /INPUT 1 "b"
+    .port_info 2 /OUTPUT 1 "s"
+    .port_info 3 /OUTPUT 1 "c"
+L_008AB6D0 .functor XOR 1, v00970560_0, v00970668_0, C4<0>, C4<0>;
+L_008AB9E8 .functor AND 1, v00970560_0, v00970668_0, C4<1>, C4<1>;
+v008AECA8_0 .net "a", 0 0, v00970560_0;  alias, 1 drivers
+v008A4710_0 .net "b", 0 0, v00970668_0;  alias, 1 drivers
+v008A4768_0 .net "c", 0 0, L_008AB9E8;  alias, 1 drivers
+v008A36D8_0 .net "s", 0 0, L_008AB6D0;  alias, 1 drivers
+S_008A3730 .scope module, "u2" "half_adder" 3 27, 3 3 0, S_008A2F10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a"
+    .port_info 1 /INPUT 1 "b"
+    .port_info 2 /OUTPUT 1 "s"
+    .port_info 3 /OUTPUT 1 "c"
+L_008ABAC0 .functor XOR 1, v00970140_0, L_008AB6D0, C4<0>, C4<0>;
+L_008AB958 .functor AND 1, v00970140_0, L_008AB6D0, C4<1>, C4<1>;
+v008A3800_0 .net "a", 0 0, v00970140_0;  alias, 1 drivers
+v008AB2E0_0 .net "b", 0 0, L_008AB6D0;  alias, 1 drivers
+v008AB338_0 .net "c", 0 0, L_008AB958;  alias, 1 drivers
+v009703A8_0 .net "s", 0 0, L_008ABAC0;  alias, 1 drivers
+    .scope S_008A2E40;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "dumpfile.vcd" {0 0};
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_008A2E40 {0 0};
+    %set/v v00970560_0, 0, 1;
+    %set/v v00970668_0, 0, 1;
+    %set/v v00970140_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 0, 1;
+    %set/v v00970668_0, 0, 1;
+    %set/v v00970140_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 0, 1;
+    %set/v v00970668_0, 1, 1;
+    %set/v v00970140_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 0, 1;
+    %set/v v00970668_0, 1, 1;
+    %set/v v00970140_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 1, 1;
+    %set/v v00970668_0, 0, 1;
+    %set/v v00970140_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 1, 1;
+    %set/v v00970668_0, 0, 1;
+    %set/v v00970140_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 1, 1;
+    %set/v v00970668_0, 1, 1;
+    %set/v v00970140_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00970560_0, 1, 1;
+    %set/v v00970668_0, 1, 1;
+    %set/v v00970140_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 20 "$finish" {0 0};
+    %end;
+    .thread T_0;
+    .scope S_008A2E40;
+T_1 ;
+    %vpi_call 2 24 "$monitor", "out" {0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "full_adder_test.v";
+    "full_adder.v";

@@ -1,0 +1,46 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01072EC8 .scope module, "count4" "count4" 2 2;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk"
+    .port_info 1 /INPUT 1 "clear"
+    .port_info 2 /INPUT 1 "enable"
+    .port_info 3 /OUTPUT 4 "out"
+o00F91874 .functor BUFZ 1, C4<z>; HiZ drive
+v010745D0_0 .net "clear", 0 0, o00F91874;  0 drivers
+o00F9188C .functor BUFZ 1, C4<z>; HiZ drive
+v0107EEE0_0 .net "clk", 0 0, o00F9188C;  0 drivers
+o00F918A4 .functor BUFZ 1, C4<z>; HiZ drive
+v0107EF38_0 .net "enable", 0 0, o00F918A4;  0 drivers
+v0107EF90_0 .var "out", 3 0;
+E_01074158 .event posedge, v0107EEE0_0;
+    .scope S_01072EC8;
+T_0 ;
+    %wait E_01074158;
+    %load/v 8, v010745D0_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0107EF90_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0107EF38_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0 8, v0107EF90_0, 4;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0107EF90_0, 0, 8;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "4bitcounter.v";
