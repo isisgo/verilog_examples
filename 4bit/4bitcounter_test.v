@@ -1,4 +1,3 @@
-`include "4bitcounter.v"
 module bitcounter_test();
 
 	reg clk, clear, enable;
@@ -7,7 +6,7 @@ module bitcounter_test();
 
 	count4 uut(clk, clear, enable, out);
 
-	always	#5 clk = ~clk;
+	always	#2 clk = ~clk;
 	
 	initial begin
 
@@ -15,11 +14,11 @@ module bitcounter_test();
 		$dumpvars(0, bitcounter_test);
 
 		clk = 0;
-		#20 enable = 1;
 		#10 clear = 1;
-		#20 enable = 0;
-		#10 $finish
-	
+		#10 clear = 0;
+		#10 enable = 1;
+		#10 enable = 0;
+		#20 clear = 0;
+		#10 $finish;
 	end
-	
 endmodule
