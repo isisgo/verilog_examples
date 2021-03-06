@@ -4,7 +4,7 @@
 
 		iverilog -o <output_file> <file>.v <file2>.v
 
-### The compiled file will appear in the paste with the name specified above. Now we can run it:
+### The compiled file will appear in the folder with the name specified above. Now we can run it:
 		
 		vvp <output_file>
 
